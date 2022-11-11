@@ -1,0 +1,70 @@
+@use 'sizes'
+@use 'fonts'
+@use 'colors'
+
+%center-container
+  display: flex
+  justify-content: center
+  align-items: center
+@mixin button($distance:0px, $radius:0rem)
+  cursor: pointer
+  border: none
+  border-radius: $radius
+  box-shadow: 0 $distance $distance 0 rgba(0, 0, 0, 0.5)
+  &:hover
+    box-shadow: 0 calc($distance + 4px) calc($distance + 4px) rgba(0, 0, 0, 0.5)
+  &:active
+    box-shadow: 0 calc($distance + 2px) calc($distance + 2px) rgba(0, 0, 0, 0.5)
+
+  
+*
+  font-family: fonts.$main-font
+  margin: 0
+  padding: 0
+
+header
+  @extend %center-container
+  color: colors.$header-footer-f
+  background-color: colors.$header-footer-c
+  height: sizes.$header-h
+  width: sizes.$header-w
+
+.main
+  display: flex
+  flex-direction: row
+
+.sidebar
+  background-color: colors.$nav-color
+  display: flex
+  flex-direction: column
+  gap: 0.5rem
+  height: sizes.$sidebar-h
+  width: sizes.$sidebar-w
+  button
+    @include button()
+    font-size: 1.2rem
+    font-weight: bold
+    padding: 1rem
+    
+  
+.container
+  background-color: colors.$bg-color
+  height: sizes.$container-h
+  width: sizes.$container-w
+
+.action-button
+  @include button(4px, 50%)
+  padding: 1rem 1.5rem
+  font-size: 2rem
+  font-weight: bold
+  background-color: colors.$action-bg-color
+  position: fixed
+  bottom: sizes.$action-buttom-bottom
+  right: 2rem
+
+footer
+  @extend %center-container
+  color: colors.$header-footer-f
+  background-color: colors.$header-footer-c
+  height: sizes.$footer-h
+  width: sizes.$footer-w
